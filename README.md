@@ -7,3 +7,7 @@ Lazy Load and Infinite Scroll example with React and Redux
 [JSON Server](https://github.com/typicode/json-server) To get a full fake REST API <br />
 
 
+## Demo 
+[Laxy Load](https://purumvisum.github.io/)
+
+
