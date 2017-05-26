@@ -8,6 +8,6 @@ Lazy Load and Infinite Scroll example with React and Redux
 
 
 ## Demo 
-[Laxy Load](https://purumvisum.github.io/)
+[Lazy Load](https://purumvisum.github.io/)
 
 
