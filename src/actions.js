@@ -1,7 +1,7 @@
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-export const CHANGE_STATUS = 'CHANGE_STATUS';
-export const CHANGE_PROCESS_STATE = 'CHANGE_PROCESS_STATE';
-export const SWITCH_LOADING = 'SWITCH_LOADING';
+export const CHANGE_LOADING_STATUS = 'CHANGE_LOADING_STATUS';
+export const CHANGE_LOADING_DATA_STATE = 'CHANGE_LOADING_DATA_STATE';
+export const SWITCH_LOADING_UI = 'SWITCH_LOADING_UI';
 
 export function receivePosts(json) {
     return {
@@ -10,45 +10,42 @@ export function receivePosts(json) {
     }
 }
 
-export function changeStatus(status) {
+export function changeLoadingStatus(status) {
     return {
-        type: CHANGE_STATUS,
+        type: CHANGE_LOADING_STATUS,
         loading: status
     }
 }
 
-export function changeProcessState(allLoaded) {
+export function changeLoadingDataState(allLoaded) {
     return {
-        type: CHANGE_PROCESS_STATE,
+        type: CHANGE_LOADING_DATA_STATE,
         allLoaded: allLoaded
     }
 }
 
-export function switchLoading() {
+export function switchLoadingUI() {
     return {
-        type: SWITCH_LOADING
+        type: SWITCH_LOADING_UI
     }
 }
 
 export function fetchPosts() {
     return function (dispatch, getState) {
-        if (!(getState().loading === 'hide')) {
-            dispatch(changeStatus("loading"));
-        }
+        dispatch(changeLoadingStatus("loading"));
         // https://jsonplaceholder.typicode.com/photos
         // http://localhost:3000/photos
         return fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${getState().page}`)
             .then(
                 response => response.json()
             )
-            .then(json =>
-            {
+            .then(json => {
                 if (json.length) {
                     dispatch(receivePosts(json));
-                    dispatch(changeStatus("ready"));
+                    dispatch(changeLoadingStatus("ready"));
                 } else {
-                    dispatch(changeStatus("hide"));
-                    dispatch(changeProcessState(true));
+                    dispatch(changeLoadingStatus("hide"));
+                    dispatch(changeLoadingDataState(true));
                 }
             })
     }
