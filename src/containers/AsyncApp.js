@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import GridItem from '../components/titles'
-import {fetchPosts, switchLoading} from '../actions'
+import {fetchPosts, switchLoadingUI} from '../actions'
 import {throttle} from 'lodash'
 
 
@@ -17,7 +17,6 @@ class AsyncApp extends Component {
 
     scrollListener () {
         if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-            debugger;
             // to avoid loading when all was loaded and something loading
             if(!(this.props.loading === "loading") && !(this.props.allLoaded === true) && (this.props.infiniteScroll)) {
                 this.props.onScroll();
@@ -40,7 +39,7 @@ class AsyncApp extends Component {
     render() {
         return (
             <GridItem
-                switchLoading = {this.props.switchLoading}
+                switchLoadingUI = {this.props.switchLoadingUI}
                 items={this.props.items}
                 onClick = {this.props.onClick}
                 loading = {this.props.loading}
@@ -69,8 +68,8 @@ const mapDispatchToProps = (dispatch) => {
         onScroll: () => {
             dispatch(fetchPosts())
         },
-        switchLoading: () => {
-            dispatch(switchLoading())
+        switchLoadingUI: () => {
+            dispatch(switchLoadingUI())
         }
     }
 }

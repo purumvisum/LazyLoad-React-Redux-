@@ -1,8 +1,8 @@
 import {
     RECEIVE_POSTS,
-    CHANGE_STATUS,
-    CHANGE_PROCESS_STATE,
-    SWITCH_LOADING
+    CHANGE_LOADING_STATUS,
+    CHANGE_LOADING_DATA_STATE,
+    SWITCH_LOADING_UI
 } from './actions'
 
 let initial = {
@@ -21,15 +21,15 @@ function reducer(state = initial, action) {
                     ...action.data],
                 page: state.page + 1
             });
-        case CHANGE_STATUS:
+        case CHANGE_LOADING_STATUS:
             return Object.assign({}, state, {
                 loading: action.loading
             });
-        case CHANGE_PROCESS_STATE:
+        case CHANGE_LOADING_DATA_STATE:
             return Object.assign({}, state, {
                 allLoaded: action.allLoaded
             });
-        case SWITCH_LOADING:
+        case SWITCH_LOADING_UI:
             return Object.assign({}, state, {
                 infiniteScroll: !state.infiniteScroll
             });

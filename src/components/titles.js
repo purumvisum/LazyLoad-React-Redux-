@@ -33,7 +33,7 @@ const GridItem = (props) => (
         <MuiThemeProvider>
             <RaisedButton
                 style={styles.switchButton}
-                onClick  = {props.switchLoading}
+                onClick  = {props.switchLoadingUI}
                 label={props.infiniteScroll? "scroll" : "click"}
             />
         </MuiThemeProvider>
