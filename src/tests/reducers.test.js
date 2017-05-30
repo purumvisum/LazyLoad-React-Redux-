@@ -1,10 +1,10 @@
-import reducer from '../reducers'
+import reducer from '../reducers';
 import {
     CHANGE_LOADING_DATA_STATE,
     SWITCH_LOADING_UI,
     RECEIVE_POSTS,
     CHANGE_LOADING_STATUS
-} from '../actions'
+} from '../actions';
 
 describe('LazyLoad reducer', () => {
     it('should return the initial state', () => {
@@ -15,11 +15,11 @@ describe('LazyLoad reducer', () => {
                 items: [],
                 page: 1,
                 infiniteScroll: false,
-                loading: "hide",
+                loading: 'hide',
                 allLoaded: false
             }
-        )
-    })
+        );
+    });
 
     it('should handle CHANGE_LOADING_STATUS', () => {
         expect(
@@ -27,21 +27,21 @@ describe('LazyLoad reducer', () => {
                 {
                     page: 3,
                     infiniteScroll: false,
-                    loading: "loading"
+                    loading: 'loading'
                 },
                 {
                     type: CHANGE_LOADING_STATUS,
-                    loading: "hide"
+                    loading: 'hide'
                 }
             )
         ).toEqual(
-                {
-                    page: 3,
-                    infiniteScroll: false,
-                    loading: "hide"
-                }
-        )
-    })
+            {
+                page: 3,
+                infiniteScroll: false,
+                loading: 'hide'
+            }
+        );
+    });
 
     it('should handle RECEIVE_POSTS', () => {
         expect(
@@ -54,11 +54,11 @@ describe('LazyLoad reducer', () => {
                     type: RECEIVE_POSTS,
                     data: [
                         {
-                            "albumId": 1,
-                            "id": 1,
-                            "title": "title",
-                            "url": "http://placehold.it/600/92c952",
-                            "thumbnailUrl": "http://placehold.it/150/92c952"
+                            albumId: 1,
+                            id: 1,
+                            title: 'title',
+                            url: 'http://placehold.it/600/92c952',
+                            thumbnailUrl: 'http://placehold.it/150/92c952'
                         }
                     ]
                 }
@@ -68,16 +68,16 @@ describe('LazyLoad reducer', () => {
                 page: 4,
                 items: [
                     {
-                        "albumId": 1,
-                        "id": 1,
-                        "title": "title",
-                        "url": "http://placehold.it/600/92c952",
-                        "thumbnailUrl": "http://placehold.it/150/92c952"
+                        albumId: 1,
+                        id: 1,
+                        title: 'title',
+                        url: 'http://placehold.it/600/92c952',
+                        thumbnailUrl: 'http://placehold.it/150/92c952'
                     }
                 ]
             }
-        )
-    })
+        );
+    });
 
     it('should handle CHANGE_LOADING_DATA_STATE', () => {
         expect(
@@ -94,8 +94,8 @@ describe('LazyLoad reducer', () => {
             {
                 allLoaded: true
             }
-        )
-    })
+        );
+    });
 
     it('should handle SWITCH_LOADING_UI', () => {
         expect(
@@ -112,6 +112,6 @@ describe('LazyLoad reducer', () => {
             {
                 infiniteScroll: true
             }
-        )
-    })
-})
+        );
+    });
+});

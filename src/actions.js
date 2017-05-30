@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch';
+
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const CHANGE_LOADING_STATUS = 'CHANGE_LOADING_STATUS';
 export const CHANGE_LOADING_DATA_STATE = 'CHANGE_LOADING_DATA_STATE';
@@ -7,46 +9,46 @@ export function receivePosts(json) {
     return {
         type: RECEIVE_POSTS,
         data: json
-    }
+    };
 }
 
 export function changeLoadingStatus(status) {
     return {
         type: CHANGE_LOADING_STATUS,
         loading: status
-    }
+    };
 }
 
 export function changeLoadingDataState(allLoaded) {
     return {
         type: CHANGE_LOADING_DATA_STATE,
-        allLoaded: allLoaded
-    }
+        allLoaded
+    };
 }
 
 export function switchLoadingUI() {
     return {
         type: SWITCH_LOADING_UI
-    }
+    };
 }
 
 export function fetchPosts() {
-    return function (dispatch, getState) {
-        dispatch(changeLoadingStatus("loading"));
+    return (dispatch, getState) => {
+        dispatch(changeLoadingStatus('loading'));
         // https://jsonplaceholder.typicode.com/photos
         // http://localhost:3000/photos
         return fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${getState().page}`)
             .then(
                 response => response.json()
             )
-            .then(json => {
+            .then((json) => {
                 if (json.length) {
                     dispatch(receivePosts(json));
-                    dispatch(changeLoadingStatus("ready"));
+                    dispatch(changeLoadingStatus('ready'));
                 } else {
-                    dispatch(changeLoadingStatus("hide"));
+                    dispatch(changeLoadingStatus('hide'));
                     dispatch(changeLoadingDataState(true));
                 }
-            })
-    }
+            });
+    };
 }

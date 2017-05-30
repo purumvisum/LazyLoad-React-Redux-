@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import {GridTile, GridList} from 'material-ui/GridList';
+import { GridTile, GridList } from 'material-ui/GridList';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -11,12 +12,12 @@ const styles = {
     },
     titleStyle: {
         color: 'white',
-        textTransform: "uppercase",
-        fontFamily: "Arial",
+        textTransform: 'uppercase',
+        fontFamily: 'Arial',
         fontSize: '10px'
     },
     indicatorWrapper: {
-        position: "relative",
+        position: 'relative',
         margin: '30px auto',
         display: 'block',
         maxWidth: '50px',
@@ -33,8 +34,8 @@ const GridItem = (props) => (
         <MuiThemeProvider>
             <RaisedButton
                 style={styles.switchButton}
-                onClick  = {props.switchLoadingUI}
-                label={props.infiniteScroll? "scroll" : "click"}
+                onClick={props.switchLoadingUI}
+                label={props.infiniteScroll ? 'scroll' : 'click'}
             />
         </MuiThemeProvider>
         <MuiThemeProvider>
@@ -47,12 +48,12 @@ const GridItem = (props) => (
                 {props.items.map((tile) => (
                     <GridTile
                         key={tile.id}
-                        title={tile.title + "ID" + tile.id}
+                        title={`${tile.title}  ID:${tile.id}`}
                         titleStyle={styles.titleStyle}
                         titlePosition="top"
                         titleBackground="linear-gradient(rgba(53, 51, 51, 0.7) 0%, rgba(150, 145, 145, 0.3) 70%, rgba(255, 255, 255, 0) 100%)"
                     >
-                        <img src={tile.url} alt={tile.url}/>
+                        <img src={tile.url} alt={tile.url} />
                     </GridTile>
                 ))}
             </GridList>
@@ -72,5 +73,13 @@ const GridItem = (props) => (
         </MuiThemeProvider>
     </div>
 );
+
+GridItem.propTypes = {
+    items: PropTypes.array.isRequired,
+    onClick: PropTypes.func.isRequired,
+    loading: PropTypes.string.isRequired,
+    switchLoadingUI: PropTypes.func.isRequired,
+    infiniteScroll: PropTypes.bool.isRequired
+};
 
 export default GridItem;
