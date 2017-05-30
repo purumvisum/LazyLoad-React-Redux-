@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import GridItem from '../components/titles'
 import {fetchPosts, switchLoadingUI} from '../actions'
@@ -73,5 +73,15 @@ const mapDispatchToProps = (dispatch) => {
         }
     }
 }
+
+AsyncApp.propTypes = {
+    items: PropTypes.array.isRequired,
+    loading:  PropTypes.string.isRequired,
+    allLoaded: PropTypes.bool.isRequired,
+    page: PropTypes.number.isRequired,
+    infiniteScroll: PropTypes.bool.isRequired
+}
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(AsyncApp)

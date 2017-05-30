@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {GridTile, GridList} from 'material-ui/GridList';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
@@ -72,5 +72,12 @@ const GridItem = (props) => (
         </MuiThemeProvider>
     </div>
 );
+
+GridItem.propTypes = {
+    items: PropTypes.array.isRequired,
+    onClick:  PropTypes.func.isRequired,
+    loading:  PropTypes.string.isRequired
+}
+
 
 export default GridItem;
