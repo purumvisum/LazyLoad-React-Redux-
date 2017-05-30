@@ -80,8 +80,6 @@ AsyncApp.propTypes = {
     allLoaded: PropTypes.bool.isRequired,
     page: PropTypes.number.isRequired,
     infiniteScroll: PropTypes.bool.isRequired
-}
-
-
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(AsyncApp)

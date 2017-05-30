@@ -77,7 +77,6 @@ GridItem.propTypes = {
     items: PropTypes.array.isRequired,
     onClick:  PropTypes.func.isRequired,
     loading:  PropTypes.string.isRequired
-}
-
+};
 
 export default GridItem;
